@@ -10,7 +10,7 @@
     },
     methods: {
       abc () {
-        res.community.get_allcommunity()
+        res.user.get_user({user_id: 1})
           .then(data => {
             console.log(data)
           })
@@ -21,7 +21,6 @@
     },
     ready () {
       this.abc()
-      console.log(this)
     }
   }
 </script>

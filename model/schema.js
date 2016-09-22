@@ -28,12 +28,12 @@ var communitySchema = new Schema({
       required: true
     },
     department: [{
-      department_name: {
+      name: {
         type: String,
         required: true
       },
-      department_id: {
-        type: Number,
+      desc: {
+        type: String,
         required: true
       }
     }],
@@ -59,13 +59,19 @@ var userSchema = new Schema({
       index: {unique: true}
     },
     community: {
-      community_name: {
+      community_id: {
         type: String,
         required: true
       },
       department: {
-        type: String,
-        required: true
+        name: {
+          type: String,
+          required: true
+        },
+        jobposition: {
+          type: String,
+          required: true
+        }
       }
     }
   }, {versionKey: false})
@@ -90,7 +96,7 @@ communitySchema.pre('save', function(next) {
 userSchema.pre('save', function(next) {
   var self = this
   if (this.isNew) {
-    Usergenerate.increase('User', function(err, res) {
+    Usergenerate.increase('User', function(err, result) {
       if (err) {
         console.log('err is' + JSON.stringify(err))
       } else{

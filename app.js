@@ -17,12 +17,8 @@ app.use(express.static(path.join(__dirname, '/')))
 // app.use(formidable)
 app.use('/api/community', community)
 app.use('/api/doc', doc)
-// app.use('/api/user', user)
+app.use('/api/user', user)
 
-app.engine('html',cons.swig)
-app.set('views', path.join(__dirname + '/build'))
-app.set('view engine', 'html')
-app.use(express.static(path.join(__dirname, '/build')))
 app.use(function(req, res, next) {
   var err = new Error('Not Found')
   err.status = 404
@@ -55,14 +51,4 @@ app.listen(3000, function () {
   console.log('Server start at 127.0.0.1:3000')
 })
 
-// app.all('*', function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-//     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-//     res.header("X-Powered-By",' 3.2.1')
-//     res.header("Content-Type", "application/json;charset=utf-8");
-//     next();
-// });
-
-module.exports = app
 

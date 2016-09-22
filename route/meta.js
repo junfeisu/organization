@@ -14,6 +14,11 @@ route.get('/', function(req, res) {
             "get_allcommunity": {},
             "post_community": {},
             "get_community": {}
+        },
+        "user": {
+            "get": {},
+            "get_user": {},
+            "post_user": {}
         }
     })
 })

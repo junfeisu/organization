@@ -15,9 +15,12 @@ route.get('/allcommunity', function (req, res) {
 })
 
 // 获取单个社团
-route.get('/community/:community_id', function (req, res) {
-  mongo.search(model.Community, {}, function (err, result) {
-    err ? res.status(500).json(err) : res.json(result)
+route.get('/community', function (req, res) {
+  mongo.search(model.Community, {community_id: req.query.community_id}, function (err, result) {
+    if (err) {
+      console.log('err is ' + JSON.stringify(err))
+    }
+    err ? res.send(err) : res.json(result)
   })
 })
 
@@ -25,7 +28,7 @@ route.get('/community/:community_id', function (req, res) {
 route.post('/community', function (req, res) {
   console.log(req.body)
   mongo.add(new model['Community'](req.body), function (err, result) {
-    err ? res.status(500).json(err) : res.send(result)
+    err ? res.status(500).json(err) : res.json({msg: "添加社团成功", community:result})
   })
 })
 
