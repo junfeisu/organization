@@ -23,6 +23,26 @@ var communitySchema = new Schema({
       type: String,
       required: true
     },
+    community_QQ: {
+      type: String,
+      required: false
+    },
+    community_wechat: {
+      type: String,
+      required: false
+    }
+    community_weibo: {
+      type: String,
+      required: false
+    },
+    community_phone: {
+      type: String,
+      required: false
+    },
+    head: {
+      type: String,
+      required: true
+    },
     category: {
       type: Number,
       required: true
@@ -47,6 +67,14 @@ var userSchema = new Schema({
       type: String,
       required: true,
       unique: true
+    },
+    student_id: {
+      type: String,
+      reuqired: true
+    },
+    birthday: {
+      type: String,
+      required: false
     },
     photo: {
       type: String,

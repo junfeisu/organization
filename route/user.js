@@ -34,4 +34,20 @@ route.post('/user', function (req, res) {
   })
 })
 
+route.post('/login', function (req, res) {
+  mongo.find(model.User, req.body, function (err, result) {
+    err ? res.status(500).json(err) : res.json({'登录成功'})
+  })
+})
+
+route.put('password', function (req, res) {
+  if (req.query.password !== req.query.ensurepassword) {
+    res.json('再次确认的密码和重新设置的密码不一样')
+    res.end()
+  }
+  mongo.update(model.User, ({user_id: req.query.user_id}, {password: req.query.password}), function (err, result) {
+    err ? res.json(err) : res.json({msg: '修改密码成功'})
+  })
+})
+
 module.exports = route
