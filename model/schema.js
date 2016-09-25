@@ -30,7 +30,7 @@ var communitySchema = new Schema({
     community_wechat: {
       type: String,
       required: false
-    }
+    },
     community_weibo: {
       type: String,
       required: false
@@ -70,7 +70,12 @@ var userSchema = new Schema({
     },
     student_id: {
       type: String,
-      reuqired: true
+      required: true
+    },
+    mobile: {
+      type: 'String',
+      requreid: true,
+      unique: true
     },
     birthday: {
       type: String,
@@ -78,13 +83,18 @@ var userSchema = new Schema({
     },
     photo: {
       type: String,
-      reuqired: true,
+      required: true,
       default: 'http://7xrp7o.com1.z0.glb.clouddn.com/sjfblog.png'
     },
     user_id: {
       type: Number,
       required: true,
       index: {unique: true}
+    },
+    password: {
+      type: String,
+      required: true,
+      default: '123456'
     },
     community: {
       community_id: {

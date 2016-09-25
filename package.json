@@ -4,9 +4,7 @@
   "description": "organization base on vue & es6 & express",
   "main": "main.js",
   "scripts": {
-    "start": "node app",
-    "build": "webpack --config webpack.build.js --bail -p",
-    "dev": "node node_modules/.bin/webpack-dev-server --history-api-fallback --hot --inline --progress"
+    "start": "node app"
   },
   "keywords": [
     "blog",

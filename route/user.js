@@ -34,15 +34,25 @@ route.post('/user', function (req, res) {
   })
 })
 
+// 成员登录
 route.post('/login', function (req, res) {
-  mongo.find(model.User, req.body, function (err, result) {
-    err ? res.status(500).json(err) : res.json({'登录成功'})
+  mongo.search(model.User, {user_id: req.body.user_id}, function (err, result) {
+    if (err) {
+      res.status(500).json(err)
+    } else {
+      if (result.length === 1) {
+        req.body.password === result[0].student_id.substring(4, 10) ? res.json({msg: '登录成功', user: result[0]}) : res.status(403).json({msg: '用户名或者密码错误'})
+      } else {
+        res.status(404).json({msg: '不存在这个用户'})
+      }
+    }
   })
 })
 
+// 修改密码
 route.put('password', function (req, res) {
   if (req.query.password !== req.query.ensurepassword) {
-    res.json('再次确认的密码和重新设置的密码不一样')
+    res.status(403).json('再次确认的密码和重新设置的密码不一样')
     res.end()
   }
   mongo.update(model.User, ({user_id: req.query.user_id}, {password: req.query.password}), function (err, result) {

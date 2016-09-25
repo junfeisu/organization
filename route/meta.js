@@ -18,7 +18,9 @@ route.get('/', function(req, res) {
         "user": {
             "get": {},
             "get_user": {},
-            "post_user": {}
+            "post_user": {},
+            "post_login": {},
+            "put_password": {}
         }
     })
 })

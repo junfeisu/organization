@@ -10,7 +10,11 @@
     },
     methods: {
       abc () {
-        res.user.get_user({user_id: 1})
+        res.user.put_password({
+          user_id: 2,
+          password: '123456',
+          ensurepassword: '12345'
+        })
           .then(data => {
             console.log(data)
           })
